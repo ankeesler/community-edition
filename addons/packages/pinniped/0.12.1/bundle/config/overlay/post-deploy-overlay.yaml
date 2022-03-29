@@ -54,6 +54,7 @@
 #@ commands.append("--is-dex-required={}".format(is_dex_required()))
 #@ commands.append("--concierge-is-cluster-scoped=true")
 
+#@ if data.values.tkg_cluster_role != "workload":
 #@overlay/match by=overlay.and_op(kind.job, job_metadata)
 ---
 metadata:
@@ -70,3 +71,4 @@ spec:
         - name: pinniped-post-deploy
           #@overlay/replace
           command: #@ commands
+#@ end

@@ -1,5 +1,7 @@
 #@ load("@ytt:data", "data")
 #@ load("/libs/constants.lib.yaml", "post_deploy_job_name", "pinniped_supervisor_namespace", "post_deploy_job_sa_name")
+
+#@ if data.values.tkg_cluster_role != "workload":
 ---
 apiVersion: v1
 kind: Namespace
@@ -68,3 +70,4 @@ spec:
           imagePullPolicy: IfNotPresent
           command: []
 
+#@ end

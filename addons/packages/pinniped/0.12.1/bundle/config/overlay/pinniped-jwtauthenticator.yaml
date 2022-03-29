@@ -6,7 +6,8 @@ kind: JWTAuthenticator
 metadata:
   name: tkg-jwt-authenticator
 spec:
-  audience: #@ data.values.pinniped.supervisor_svc_endpoint
+  #! The cascading controller will need to make sure this is set.
+  audience: #@ data.values.pinniped.concierge.audience
   issuer: #@ data.values.pinniped.supervisor_svc_endpoint
   tls:
     certificateAuthorityData: #@ data.values.pinniped.supervisor_ca_bundle_data
