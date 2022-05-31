@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: pinniped-status-controller-manager
+  name: pinniped-status-controller-manager
+  namespace: #@ pinniped_supervisor_namespace()
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pinniped-status-controller-manager
+  template:
+    metadata:
+      labels:
+        app: pinniped-status-controller-manager
+    spec:
+      containers:
+      - name: pinniped-status-controller-manager
+        image: projects-stg.registry.vmware.com/tkg/tanzu_core/addons/tkg-pinniped-post-deploy:whatever
+        args: ["--run-controller"]
