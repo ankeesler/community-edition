@@ -1,4 +1,5 @@
 #@ load("/values.star", "render_on_workload_cluster")
+#@ load("/libs/constants.lib.yaml", "jwt_authenticator_audience")
 #@ load("@ytt:data", "data")
 
 #@ if render_on_workload_cluster():
@@ -10,4 +11,6 @@ metadata:
   namespace: kube-public
 data:
   concierge_is_cluster_scoped: "true"
+  #@ if/end jwt_authenticator_audience():
+  concierge_audience: #@ jwt_authenticator_audience()
 #@ end
